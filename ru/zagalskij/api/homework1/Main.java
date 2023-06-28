@@ -44,7 +44,10 @@ public class Main {
                     break;
                 }
                 case 5: {
-                    Task4.getRandomStr();
+                    System.out.println(
+                            "enter an expression with two unknowns, the unknowns are indicated by the sign \"?\"");
+                    String str = scanner.nextLine();
+                    Task4.Main(str);
                     break;
                 }
                  case 0:
