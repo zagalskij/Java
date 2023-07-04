@@ -1,15 +1,27 @@
 package ru.zagalskij.api.homework2;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.XMLFormatter;
 
 import ru.zagalskij.api.homework1.Calculator;
 import ru.zagalskij.api.homework1.PrimeNumbers;
 
 public class Main {
-     static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
+         Logger logger = Logger.getLogger(Array.class.getName());
+                    Class<?> currentClass = Main.class;
+                    static String currentDirectory = System.getProperty("user.dir");
 
-    public static void main(String[] args) {
+                    static FileHandler fh = new FileHandler(currentDirectory + "/ru/zagalskij/api/homework2/log.xml");
+
+                    public static void main(String[] args) {
+    
+        
+    
         boolean f = true;
         while (f) {
             System.out.println("Select a task: ");
@@ -26,6 +38,13 @@ public class Main {
                     break;
                 }
                 case 2: {
+                    try {
+                    Logger logger = Logger.getLogger(Array.class.getName());
+                    logger.addHandler(fh);
+                    XMLFormatter xml = new XMLFormatter();
+                    fh.setFormatter(xml);
+                    logger.log(Level.WARNING, "Тестовое логирование 1");
+                    logger.info("Тестовое логирование 2");
                     Array t2 = new Array();
                     System.out.println("enter the size array");
                     int size = Integer.parseInt(scanner.nextLine());
@@ -37,6 +56,10 @@ public class Main {
                     int[] sortedArray = t2.bubbleSort(randomArray);
                     System.out.print("sorted array: ");
                     t2.printArray(sortedArray);
+                    }
+                    catch (IOException e) {
+                        logger.log(Level.SEVERE, "Ошибка при создании FileHandler", e);
+                    }
                     break;
                 }
                 case 3: {

@@ -3,10 +3,11 @@
 package ru.zagalskij.api.homework2;
 
 import java.util.Random;
+import java.util.logging.Level;
 
 public class Array {
     public int[] bubbleSort(int[] array) {
-        
+        logger.log(Level.WARNING, "Тестовое логирование 1");
         int temp = 0;
         for (int i = 0; i < array.length; i++) {
 
