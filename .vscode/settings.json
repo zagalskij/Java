@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "ru/zagalskij/api/homework2/json-20230618.jar"
+    ]
+}
