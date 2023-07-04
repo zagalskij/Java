@@ -2,12 +2,28 @@
 // результат после каждой итерации запишите в лог-файл.
 package ru.zagalskij.api.homework2;
 
+import java.io.IOException;
 import java.util.Random;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 
 public class Array {
-    public int[] bubbleSort(int[] array) {
-        logger.log(Level.WARNING, "Тестовое логирование 1");
+     Logger logger = Logger.getLogger(Array.class.getName());
+    
+     public int[] bubbleSort(int[] array) {
+         logger.setLevel(Level.INFO);
+         logger.setUseParentHandlers(false);
+         try {
+            String currentDirectory = System.getProperty("user.dir");
+            FileHandler fileHandler = new FileHandler(currentDirectory + "/ru/zagalskij/api/homework2/sorting.log");
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         int temp = 0;
         for (int i = 0; i < array.length; i++) {
 
@@ -16,6 +32,7 @@ public class Array {
                     temp = array[j];
                     array[j] = array[j - 1];
                     array[j - 1] = temp;
+                    logger.info(String.format("replacement %d on %d", array[j], array[j-1]));
                 }
             }
         }

@@ -1,11 +1,26 @@
 package ru.zagalskij.api.homework1;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
 
 public class Calculator {
+    static Logger logger = Logger.getLogger(Calculator.class.getName());
     static Scanner scanner = new Scanner(System.in);
 
     public static void chose() {
+        logger.setLevel(Level.INFO);
+        try {
+            String currentDirectory = System.getProperty("user.dir");
+            FileHandler fileHandler = new FileHandler(currentDirectory + "/ru/zagalskij/api/homework2/Calculator.log");
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         boolean f = true;
         while (f) {
             System.out.println("Select a task: ");
@@ -22,7 +37,9 @@ public class Calculator {
                     Double firstNumber = Double.parseDouble(scanner.nextLine());
                     System.out.println("enter the second number");
                     Double secondNumber = Double.parseDouble(scanner.nextLine());
-                    System.out.printf("Sum of numbers: %.2f \n", firstNumber + secondNumber);
+                    Double sum = firstNumber + secondNumber;
+                    System.out.printf("Sum of numbers: %.2f \n", sum);
+                    logger.info("Performed addition. Result: " + sum);
                     break;
                 }
                 case 2: {
@@ -30,7 +47,9 @@ public class Calculator {
                     Double firstNumber = Double.parseDouble(scanner.nextLine());
                     System.out.println("enter the second number");
                     Double secondNumber = Double.parseDouble(scanner.nextLine());
-                    System.out.printf("The result of subtraction: %.2f \n", firstNumber - secondNumber);
+                    Double subtraction = firstNumber - secondNumber;
+                    System.out.printf("The result of subtraction: %.2f \n", subtraction);
+                    logger.info("Performed addition. Result: " + subtraction);
                     break;
                 }
                 case 3: {
@@ -38,7 +57,9 @@ public class Calculator {
                     Double firstNumber = Double.parseDouble(scanner.nextLine());
                     System.out.println("enter the second number");
                     Double secondNumber = Double.parseDouble(scanner.nextLine());
-                    System.out.printf("Division result: %.2f \n", firstNumber / secondNumber);
+                    Double division = firstNumber / secondNumber;
+                    System.out.printf("Division result: %.2f \n", division);
+                    logger.info("Performed addition. Result: " + division);
                     break;
                 }
                 case 4: {
@@ -46,7 +67,9 @@ public class Calculator {
                     Double firstNumber = Double.parseDouble(scanner.nextLine());
                     System.out.println("enter the second number");
                     Double secondNumber = Double.parseDouble(scanner.nextLine());
-                    System.out.printf("The result of multiplication: %.2f \n", firstNumber * secondNumber);
+                    Double multiplication = firstNumber * secondNumber;
+                    System.out.printf("The result of multiplication: %.2f \n", multiplication);
+                    logger.info("Performed addition. Result: " + multiplication);
                     break;
                 }
                 case 0:

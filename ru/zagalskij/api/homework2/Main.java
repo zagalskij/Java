@@ -1,25 +1,16 @@
 package ru.zagalskij.api.homework2;
 
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.XMLFormatter;
+
+import org.json.JSONArray;
 
 import ru.zagalskij.api.homework1.Calculator;
-import ru.zagalskij.api.homework1.PrimeNumbers;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
-         Logger logger = Logger.getLogger(Array.class.getName());
-                    Class<?> currentClass = Main.class;
-                    static String currentDirectory = System.getProperty("user.dir");
+         
 
-                    static FileHandler fh = new FileHandler(currentDirectory + "/ru/zagalskij/api/homework2/log.xml");
-
-                    public static void main(String[] args) {
-    
+   public static void main(String[] args){
         
     
         boolean f = true;
@@ -38,13 +29,6 @@ public class Main {
                     break;
                 }
                 case 2: {
-                    try {
-                    Logger logger = Logger.getLogger(Array.class.getName());
-                    logger.addHandler(fh);
-                    XMLFormatter xml = new XMLFormatter();
-                    fh.setFormatter(xml);
-                    logger.log(Level.WARNING, "Тестовое логирование 1");
-                    logger.info("Тестовое логирование 2");
                     Array t2 = new Array();
                     System.out.println("enter the size array");
                     int size = Integer.parseInt(scanner.nextLine());
@@ -56,18 +40,14 @@ public class Main {
                     int[] sortedArray = t2.bubbleSort(randomArray);
                     System.out.print("sorted array: ");
                     t2.printArray(sortedArray);
-                    }
-                    catch (IOException e) {
-                        logger.log(Level.SEVERE, "Ошибка при создании FileHandler", e);
-                    }
                     break;
                 }
                 case 3: {
-                    System.out.println("enter the number n");
-                    int n = Integer.parseInt(scanner.nextLine());
-                    int[] arr = PrimeNumbers.getPrimeNumbers(n);
-                    PrimeNumbers.printArray(arr);
-                    break;
+                    Task3 t3 = new Task3();
+                    String currentDirectory = System.getProperty("user.dir");
+                    JSONArray json = t3.readFromFile(currentDirectory + "/ru/zagalskij/api/homework2/output.txt");
+                    t3.saveToFile(t3.parseJson(json).toString(), currentDirectory + "/ru/zagalskij/api/homework2/result.txt");
+        break;
                 }
                 case 4: {
                     Calculator.chose();
