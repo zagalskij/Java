@@ -1,12 +1,6 @@
 package ru.zagalskij.api.homework4;
 
-import org.json.JSONArray;
 import ru.zagalskij.api.homework1.Calculator;
-import ru.zagalskij.api.homework2.Array;
-import ru.zagalskij.api.homework2.Task1;
-import ru.zagalskij.api.homework2.Task3;
-
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
