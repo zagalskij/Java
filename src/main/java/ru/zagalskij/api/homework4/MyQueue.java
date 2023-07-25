@@ -4,7 +4,14 @@ import java.util.LinkedList;
 
 class MyQueue<T> {
     private LinkedList<T> elements = new LinkedList<>();
-    public MyQueue() { }
+
+    public MyQueue() {
+    }
+
+    public MyQueue(LinkedList linkedList) {
+        this.elements = linkedList;
+    }
+
 
     public void enqueue(T element) {
         elements.addLast(element);
